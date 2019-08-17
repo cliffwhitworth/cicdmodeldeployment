@@ -5,12 +5,12 @@ from sklearn.externals import joblib
 from sklearn.pipeline import Pipeline
 from sklearn.base import BaseEstimator, TransformerMixin
 
-PIPELINE_NAME = 'lasso_regression'
+PIPELINE_NAME = 'lending_club'
 PIPELINE_SAVE_FILE = f'{PIPELINE_NAME}_output'
 
 PACKAGE_ROOT = pathlib.Path(__file__).resolve().parent
-TRAINED_MODEL_DIR = PACKAGE_ROOT 
-DATASET_DIR = PACKAGE_ROOT
+TRAINED_MODEL_DIR = PACKAGE_ROOT / 'trained_model'
+DATASET_DIR = PACKAGE_ROOT / 'datasets'
 
 # variables
 FEATURES = ['MSSubClass', 'MSZoning', 'Neighborhood',

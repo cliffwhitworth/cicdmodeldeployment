@@ -1,5 +1,5 @@
 import math
-from regression_model.integrated_house_predict import make_prediction, load_dataset, load_pipeline
+from lending_club.integrated_house_predict import make_prediction, load_dataset, load_pipeline
 
 def test_make_single_prediction():
     # Given

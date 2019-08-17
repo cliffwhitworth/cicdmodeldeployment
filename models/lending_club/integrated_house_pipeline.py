@@ -7,13 +7,17 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.externals import joblib
 
-from regression_model.processing import preprocessors as pp
-from regression_model.processing import features
+from lending_club.processing import preprocessors as pp
+from lending_club.processing import features
+
+# pipeline name
+PIPELINE_NAME = 'lending_club'
+PIPELINE_SAVE_FILE = f'{PIPELINE_NAME}_output'
 
 # paths
 PACKAGE_ROOT = pathlib.Path(__file__).resolve().parent
-TRAINED_MODEL_DIR = PACKAGE_ROOT 
-DATASET_DIR = PACKAGE_ROOT 
+TRAINED_MODEL_DIR = PACKAGE_ROOT / 'trained_model'
+DATASET_DIR = PACKAGE_ROOT / 'datasets'
 
 # data
 TESTING_DATA_FILE = 'test.csv'
@@ -62,9 +66,6 @@ CATEGORICAL_NA_NOT_ALLOWED = [
     feature for feature in CATEGORICAL_VARS
     if feature not in CATEGORICAL_VARS_WITH_NA
 ]
-
-PIPELINE_NAME = 'lasso_regression'
-PIPELINE_SAVE_FILE = f'{PIPELINE_NAME}_output'
 
 def load_dataset(*, file_name: str) -> pd.DataFrame:
     _data = pd.read_csv(f'{DATASET_DIR}/{file_name}')
