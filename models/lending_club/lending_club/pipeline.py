@@ -11,6 +11,7 @@ from sklearn.externals import joblib
 from lending_club.processing import preprocessors as pp
 from lending_club.processing import features
 from lending_club.config import config as cnf
+from lending_club import __version__ as _version
 
 def load_dataset(*, file_name: str) -> pd.DataFrame:
     _data = pd.read_csv(f'{cnf.DATASET_DIR}/{file_name}')
