@@ -1,12 +1,11 @@
-from regression_model.config import config as model_config
-from regression_model.processing.data_management import load_dataset
-from regression_model import __version__ as _version
-
 import json
 import math
 
+from regression_model.config import config as model_config
+from regression_model.processing.data_management import load_dataset
+from regression_model import __version__ as regression_model_version
+from lending_club import __version__ as lending_club_version
 from api import __version__ as api_version
-
 
 def test_health_endpoint_returns_200(flask_test_client):
     # When
@@ -23,7 +22,8 @@ def test_version_endpoint_returns_version(flask_test_client):
     # Then
     assert response.status_code == 200
     response_json = json.loads(response.data)
-    assert response_json['model_version'] == _version
+    assert response_json['regression_model_version'] == regression_model_version
+    assert response_json['lending_club_version'] == regression_model_version
     assert response_json['api_version'] == api_version
 
 
@@ -43,7 +43,7 @@ def test_prediction_endpoint_returns_prediction(flask_test_client):
     # Then
     assert response.status_code == 200
     response_json = json.loads(response.data)
-    prediction = response_json['predictions']
+    prediction = response_json['predictions'][0]
     response_version = response_json['version']
     assert math.ceil(prediction) == 112476
-    assert response_version == _version
+    assert response_version == regression_model_version

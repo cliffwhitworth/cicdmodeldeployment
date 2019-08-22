@@ -1,8 +1,8 @@
 import logging
 import os
 
-from regression_model.config import config
-from regression_model.config import logging_config
+from lending_club.config import config
+from lending_club.config import logging_config
 
 
 # Configure logger for use in package

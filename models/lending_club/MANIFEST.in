@@ -8,8 +8,8 @@ include lending_club/datasets/lending_club_selected_features_train.csv
 include lending_club/datasets/lending_club_selected_features_test.csv
 include lending_club/trained_models/*.pkl
 include lending_club/VERSION
-
 include ./requirements.txt
+
 exclude *.log
 exclude *.ipynb
 
