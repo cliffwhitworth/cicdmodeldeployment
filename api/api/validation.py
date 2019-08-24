@@ -8,14 +8,6 @@ import json
 class InvalidInputError(Exception):
     """Invalid model input."""
 
-
-SYNTAX_ERROR_FIELD_MAP = {
-    '1stFlrSF': 'FirstFlrSF',
-    '2ndFlrSF': 'SecondFlrSF',
-    '3SsnPorch': 'ThreeSsnPortch'
-}
-
-
 class HouseDataRequestSchema(Schema):
     Alley = fields.Str(allow_none=True)
     BedroomAbvGr = fields.Integer()
@@ -96,77 +88,43 @@ class HouseDataRequestSchema(Schema):
     YrSold = fields.Integer()
     FirstFlrSF = fields.Integer()
     SecondFlrSF = fields.Integer()
-    ThreeSsnPortch = fields.Integer()
-
+    ThreeSsnPorch = fields.Integer()
 
 def _filter_error_rows(errors: dict,
                        validated_input: t.List[dict]
                        ) -> t.List[dict]:
     """Remove input data rows with errors."""
-
+    
     indexes = errors.keys()
     # delete them in reverse order so that you
     # don't throw off the subsequent indexes.
-    #for index in sorted(indexes, reverse=True):
-        #del validated_input[index]
+    for index in sorted(indexes, reverse=True):
+        #if isinstance(index, int): 
+        del validated_input[index]
 
     return validated_input
-
 
 def validate_inputs(input_data):
     """Check prediction inputs against schema."""
 
     # set many=True to allow passing in a list
-    schema = HouseDataRequestSchema(strict=True, many=True)
-
-    # convert syntax error field names (beginning with numbers)
-    # '1stFlrSF': 'FirstFlrSF',
-    # '2ndFlrSF': 'SecondFlrSF',
-    # '3SsnPorch': 'ThreeSsnPortch'
-
-    # if '1stFlrSF' in input_data:
-    #     input_data.replace('1stFlrSF', 'FirstFlrSF')
-
-    # if '2ndFlrSF' in input_data:
-    #     input_data.replace('2ndFlrSF', 'SecondFlrSF')
-
-    # if '3SsnPorch' in input_data:
-    #     input_data.replace('3SsnPorch', 'ThreeSsnPortch')
-
-    # for dict in input_data:
-    #    for key, value in SYNTAX_ERROR_FIELD_MAP.items():
-    #        print(value)
-    #        dict[value] = dict[value]
-    #        del dict
+    schema = HouseDataRequestSchema(many=True)
 
     errors = None
+
     try:
-        schema.load(input_data)
+        print('schema')
+        schema.load(json.loads(input_data))
     except ValidationError as exc:
+        print('exc')
         errors = exc.messages
-
-    # convert syntax error field names back
-    # this is a hack - never name your data
-    # fields with numbers as the first letter.
-    # if 'FirstFlrSF' in input_data:
-    #      input_data.replace('FirstFlrSF', '1stFlrSF')
-
-    # if 'SecondFlrSF' in input_data:
-    #      input_data.replace('SecondFlrSF', '2ndFlrSF')
-
-    # if 'ThreeSsnPortch' in input_data:
-    #      input_data.replace('ThreeSsnPortch', '3SsnPorch')
-
-    #for dict in input_data:
-    #    for key, value in SYNTAX_ERROR_FIELD_MAP.items():
-    #        dict[key] = dict[value]
-    #        del dict[value]
-
+        print(errors)
+        
     if errors:
         validated_input = _filter_error_rows(
             errors=errors,
             validated_input=input_data)
     else:
         validated_input = input_data
-
+    
     return validated_input, errors

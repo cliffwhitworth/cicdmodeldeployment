@@ -7,6 +7,8 @@ from api.config import get_logger
 from api.validation import validate_inputs
 from api import __version__ as api_version
 
+import json
+
 _logger = get_logger(logger_name=__name__)
 
 
@@ -37,6 +39,8 @@ def predict():
 
         # Step 2: Validate the input using marshmallow schema
         input_data, errors = validate_inputs(input_data=json_data)
+        
+        # https://stackoverflow.com/questions/4547274/convert-a-python-dict-to-a-string-and-back
 
         # Step 3: Model prediction
         result = make_prediction(input_data=input_data)

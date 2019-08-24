@@ -37,12 +37,12 @@ def test_prediction_endpoint_returns_prediction(flask_test_client):
     post_json = test_data[0:1].to_json(orient='records')
 
     # When
-    response = flask_test_client.post('/v1/predict/regression',
-                                      json=post_json)
+    response = flask_test_client.post('/v1/predict/regression', json=post_json)
 
     # Then
     assert response.status_code == 200
     response_json = json.loads(response.data)
+    print(response_json.get('errors'))
     prediction = response_json['predictions'][0]
     response_version = response_json['version']
     assert math.ceil(prediction) == 112476
