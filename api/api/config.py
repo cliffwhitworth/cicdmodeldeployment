@@ -11,7 +11,8 @@ FORMATTER = logging.Formatter(
     "%(funcName)s:%(lineno)d — %(message)s")
 LOG_DIR = PACKAGE_ROOT / 'logs'
 LOG_DIR.mkdir(exist_ok=True)
-LOG_FILE = LOG_DIR / 'ml_api.log'
+LOG_FILE = LOG_DIR / 'api.log'
+RUN_TESTS = 10
 
 
 def get_console_handler():

@@ -5,6 +5,8 @@ from regression_model.config import config as model_config
 from regression_model.processing.data_management import load_dataset
 from regression_model import __version__ as regression_model_version
 from lending_club import __version__ as lending_club_version
+
+from api import config as api_config
 from api import __version__ as api_version
 
 def test_health_endpoint_returns_200(flask_test_client):
@@ -34,7 +36,7 @@ def test_prediction_endpoint_returns_prediction(flask_test_client):
     # data versions to get confused by not spreading it
     # across packages.
     test_data = load_dataset(file_name=model_config.TESTING_DATA_FILE)
-    post_json = test_data[0:1].to_json(orient='records')
+    post_json = test_data[0:api_config.RUN_TESTS].to_json(orient='records')
 
     # When
     response = flask_test_client.post('/v1/predict/regression', json=post_json)

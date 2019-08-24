@@ -100,9 +100,14 @@ def _filter_error_rows(errors: dict,
     # don't throw off the subsequent indexes.
     for index in sorted(indexes, reverse=True):
         #if isinstance(index, int): 
+        validated_input = json.loads(validated_input)
         del validated_input[index]
+        print(len(validated_input))
 
-    return validated_input
+    if len(validated_input) > 0:
+        validated_input = json.dumps(validated_input)
+
+        return validated_input
 
 def validate_inputs(input_data):
     """Check prediction inputs against schema."""
