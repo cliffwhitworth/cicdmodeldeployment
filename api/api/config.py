@@ -28,7 +28,6 @@ def get_file_handler():
     file_handler.setLevel(logging.WARNING)
     return file_handler
 
-
 def get_logger(*, logger_name):
     """Get logger with prepared handlers."""
 
@@ -42,14 +41,12 @@ def get_logger(*, logger_name):
 
     return logger
 
-
 class Config:
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
     SERVER_PORT = 5000
-
 
 class ProductionConfig(Config):
     DEBUG = False
