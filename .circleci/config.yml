@@ -28,7 +28,7 @@ jobs:
       - run:
           name: Run tests
           command: |
-            py.test -vv models/regression_model/regression_model/tests
+            pytest -vv models/regression_model/regression_model/tests
 
 workflows:
   version: 2
