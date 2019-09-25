@@ -20,7 +20,7 @@ jobs:
       - checkout
       - *prepare_venv
       - run:
-          name: Install requirements
+          name: Install requirements and run tests
           command: |
             . venv/bin/activate
             pip install --upgrade pip
@@ -28,7 +28,8 @@ jobs:
       - run:
           name: Run tests
           command: |
-            pytest -vv models/regression_model/regression_model/tests
+            . venv/bin/activate
+            py.test -vv models/regression_model/regression_model/tests
 
 workflows:
   version: 2
