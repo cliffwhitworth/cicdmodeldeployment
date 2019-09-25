@@ -20,7 +20,7 @@ jobs:
       - checkout
       - *prepare_venv
       - run:
-          name: Install requirements and run tests
+          name: Install requirements
           command: |
             . venv/bin/activate
             pip install --upgrade pip
