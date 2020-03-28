@@ -12,10 +12,10 @@ jobs:
             virtualenv venv
             . venv/bin/activate
             pip install --upgrade pip
-            pip install -r packages/regression_model/requirements.txt
+            pip install -r models/regression_model/requirements.txt
             chmod +x ./scripts/fetch_kaggle_dataset.sh
             ./scripts/fetch_kaggle_dataset.sh
-            py.test -vv packages/regression_model/tests
+            py.test -vv models/regression_model/tests
 
 workflows:
   version: 2

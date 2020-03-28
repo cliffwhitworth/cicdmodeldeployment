@@ -1,8 +1,0 @@
-source venv/bin/activate
-pip install -r requirements.txt
-git checkout COMMIT_HASH_FROM_GITHUB
-pytest path/to/tests -W ignore::DeprecationWarning
-cp -r * /home/cliffo/10_CICDModelDeployment/models/regression_model/
-setup.py sdist bdist_wheel
-pip install -e /path
-set FLASK_APP=run.py

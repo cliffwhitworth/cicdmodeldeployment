@@ -112,3 +112,6 @@ venv.bak/
 # datafiles
 # train.csv
 # test.csv
+
+# notes file
+notes.txt
