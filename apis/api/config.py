@@ -11,8 +11,7 @@ FORMATTER = logging.Formatter(
     "%(funcName)s:%(lineno)d — %(message)s")
 LOG_DIR = PACKAGE_ROOT / 'logs'
 LOG_DIR.mkdir(exist_ok=True)
-LOG_FILE = LOG_DIR / 'api.log'
-RUN_TESTS = 10
+LOG_FILE = LOG_DIR / 'ml_api.log'
 
 
 def get_console_handler():
@@ -28,12 +27,13 @@ def get_file_handler():
     file_handler.setLevel(logging.WARNING)
     return file_handler
 
+
 def get_logger(*, logger_name):
     """Get logger with prepared handlers."""
 
     logger = logging.getLogger(logger_name)
 
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
 
     logger.addHandler(get_console_handler())
     logger.addHandler(get_file_handler())
@@ -41,12 +41,14 @@ def get_logger(*, logger_name):
 
     return logger
 
+
 class Config:
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
     SERVER_PORT = 5000
+
 
 class ProductionConfig(Config):
     DEBUG = False

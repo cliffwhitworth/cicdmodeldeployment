@@ -24,7 +24,7 @@ TARGET = 'SalePrice'
 FEATURES = ['MSSubClass', 'MSZoning', 'Neighborhood',
             'OverallQual', 'OverallCond', 'YearRemodAdd',
             'RoofStyle', 'MasVnrType', 'BsmtQual', 'BsmtExposure',
-            'HeatingQC', 'CentralAir', '1stFlrSF', 'GrLivArea',
+            'HeatingQC', 'CentralAir', 'FirstFlrSF', 'GrLivArea',
             'BsmtFullBath', 'KitchenQual', 'Fireplaces', 'FireplaceQu',
             'GarageType', 'GarageFinish', 'GarageCars', 'PavedDrive',
             'LotFrontage',
@@ -45,7 +45,7 @@ CATEGORICAL_VARS_WITH_NA = ['MasVnrType', 'BsmtQual', 'BsmtExposure',
 TEMPORAL_VARS = 'YearRemodAdd'
 
 # variables to log transform
-NUMERICALS_LOG_VARS = ['LotFrontage', '1stFlrSF', 'GrLivArea']
+NUMERICALS_LOG_VARS = ['LotFrontage', 'FirstFlrSF', 'GrLivArea']
 
 # categorical variables to encode
 CATEGORICAL_VARS = ['MSZoning', 'Neighborhood', 'RoofStyle', 'MasVnrType',

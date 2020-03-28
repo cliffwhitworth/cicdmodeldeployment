@@ -11,9 +11,9 @@ from setuptools import find_packages, setup
 # Package meta-data.
 NAME = 'regression_model'
 DESCRIPTION = 'Train and deploy regression model.'
-URL = 'https://github.com/cliffwhitworth/cicdmodeldeployment'
-EMAIL = 'emailme@cliffordwhitworth.com'
-AUTHOR = 'Cliff Whitworth'
+URL = 'your github project'
+EMAIL = 'your_email@email.com'
+AUTHOR = 'Your name'
 REQUIRES_PYTHON = '>=3.6.0'
 
 
